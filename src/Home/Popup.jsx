@@ -1,7 +1,6 @@
 import React from "react";
 
 const Popup = () => {
-    
     function closePopup() {
         document.getElementById("all-popup").style.display = "none";
     }

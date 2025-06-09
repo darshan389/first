@@ -1,27 +1,26 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const Loginpage = () => {
+const Forgot = () => {
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    const handleLogin = async (e) => {
+    const handleforgot = async (e) => {
         e.preventDefault();
 
         try {
             const response = await axios.post('http://localhost:3030/login', {
-                email,
-                password
+                email
             });
 
             if (response.status === 200) {
-                alert("Login successful!");
-                navigate("/");
+                alert("Forgiting successful!");
+                navigate("/"); 
             }
         } catch (error) {
             alert("Invalid email or password. Please try again.");
+            navigate("/login")
         }
     };
 
@@ -30,14 +29,14 @@ const Loginpage = () => {
             <div className="container">
                 <div className="register_conatant_inner">
                     <div className="section_title">
-                        <h2>Login</h2>
-                        <p>Get access to your Orders, Wishlist and<br />Recommendations.</p>
+                        <h2>Forgot Password</h2>
+                        <p>Enter your email & set password, We send you link.</p>
                     </div>
                     <div className="login_contant">
                         <div className="login_contant_inner">
                             <div className="item">
                                 <div className="item_inner">
-                                    <form onSubmit={handleLogin}>
+                                    <form onSubmit={handleforgot}>
                                         <ul>
                                             <li>
                                                 <label>Email*</label>
@@ -49,21 +48,9 @@ const Loginpage = () => {
                                                     required
                                                 />
                                             </li>
-                                            <li>
-                                                <label>Password*</label>
-                                                <input
-                                                    type="password"
-                                                    placeholder="Enter your password"
-                                                    value={password}
-                                                    onChange={(e) => setPassword(e.target.value)}
-                                                    required
-                                                />
-                                            </li>
                                         </ul>
-                                        <label><Link to="/forgot">Forgot Password?</Link></label>
                                         <div className="login_bottom">
-                                            <span><Link to="/Register">Create Account?</Link></span>
-                                            <button type="submit">Login</button>
+                                            <button type="submit">Forgot</button>
                                         </div>
                                     </form>
                                 </div>
@@ -83,4 +70,4 @@ const Loginpage = () => {
     );
 };
 
-export default Loginpage;
+export default Forgot;
